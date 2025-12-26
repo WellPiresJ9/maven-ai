@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maven AI Solutions | Agentes de IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              brand: {
+                bg: '#083344', // Cyan 950 base (Rich Deep Blue/Green)
+                primary: '#22d3ee', // Cyan 400 (Electric Blue)
+                accent: '#38bdf8', // Sky 400
+                text: '#f0f9ff', // Sky 50
+                muted: '#94a3b8',
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shimmer': 'shimmer 8s infinite linear',
+            },
+            keyframes: {
+              shimmer: {
+                '0%': { backgroundPosition: '200% 0' },
+                '100%': { backgroundPosition: '-200% 0' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #083344;
+        /* Metallic Cyan/Steel Gradient */
+        /* Created a "Chrome" effect with a lighter top and deep bottom */
+        background-image: 
+          radial-gradient(circle at 50% -20%, #22d3ee 0%, #0e7490 20%, #164e63 40%, #083344 70%, #020617 100%);
+        background-attachment: fixed;
+        color: #f0f9ff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Noise Texture - Sharpened for steel feel */
+      .bg-noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.05;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+      }
+
+      /* LIQUID CHROME CARD */
+      .glass-card {
+        background: linear-gradient(
+          145deg,
+          rgba(34, 211, 238, 0.05) 0%, /* Cyan Tint */
+          rgba(15, 23, 42, 0.4) 100%
+        );
+        backdrop-filter: blur(20px) saturate(100%);
+        -webkit-backdrop-filter: blur(20px) saturate(100%);
+        
+        /* Metallic Borders */
+        border: 1px solid rgba(34, 211, 238, 0.15);
+        border-top: 1px solid rgba(165, 243, 252, 0.3); /* Bright Cyan Top Edge */
+        border-bottom: 1px solid rgba(8, 51, 68, 0.5);
+        
+        box-shadow: 
+          0 20px 40px -10px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 0 rgba(165, 243, 252, 0.1),
+          inset 0 0 40px rgba(34, 211, 238, 0.02);
+          
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      
+      .glass-card:hover {
+        background: linear-gradient(
+          145deg,
+          rgba(34, 211, 238, 0.1) 0%,
+          rgba(15, 23, 42, 0.5) 100%
+        );
+        border-color: rgba(34, 211, 238, 0.4);
+        border-top-color: rgba(165, 243, 252, 0.6);
+        
+        box-shadow: 
+          0 30px 60px -12px rgba(0, 0, 0, 0.6),
+          inset 0 0 0 1px rgba(34, 211, 238, 0.1),
+          0 0 50px rgba(34, 211, 238, 0.2); /* Cyan Glow */
+          
+        transform: translateY(-4px) scale(1.01);
+      }
+
+      .glass-panel {
+        background: rgba(8, 51, 68, 0.4); /* Cyan/Dark Base */
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+        border: 1px solid rgba(34, 211, 238, 0.1);
+        border-top: 1px solid rgba(165, 243, 252, 0.2);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      }
+
+      /* Cyan Liquid Button */
+      .liquid-button {
+        background: linear-gradient(
+          to bottom,
+          rgba(34, 211, 238, 0.2) 0%,
+          rgba(34, 211, 238, 0.05) 50%,
+          rgba(34, 211, 238, 0.02) 51%,
+          rgba(34, 211, 238, 0.1) 100%
+        );
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        
+        border: 1px solid rgba(34, 211, 238, 0.3);
+        border-top: 1px solid rgba(165, 243, 252, 0.5);
+        color: #e0f2fe;
+        
+        box-shadow: 
+          0 4px 15px rgba(8, 51, 68, 0.5),
+          inset 0 1px 0 rgba(165, 243, 252, 0.3),
+          0 0 10px rgba(34, 211, 238, 0.1);
+          
+        transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .liquid-button:hover {
+        background: linear-gradient(
+          to bottom,
+          rgba(34, 211, 238, 0.3) 0%,
+          rgba(34, 211, 238, 0.1) 100%
+        );
+        border-color: rgba(103, 232, 249, 0.8);
+        box-shadow: 
+          0 0 30px rgba(34, 211, 238, 0.5), /* Cyan Glow */
+          inset 0 1px 0 rgba(255,255,255,0.5); 
+        transform: translateY(-1px);
+        text-shadow: 0 0 10px rgba(165, 243, 252, 0.8);
+        color: #fff;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #083344;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #155e75;
+        border-radius: 4px;
+        border: 1px solid #0e7490;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #22d3ee;
+        box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
