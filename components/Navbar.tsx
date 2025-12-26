@@ -5,13 +5,21 @@ import { NAV_ITEMS, CALENDLY_LINK } from '../constants';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isInHero, setIsInHero] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      
+      // Check if we're still in the hero section (first viewport)
+      setIsInHero(scrollY < viewportHeight * 0.8);
+      setIsScrolled(scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -27,12 +35,22 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer group" onClick={() => window.scrollTo(0,0)}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-600/80 to-cyan-900/80 border border-cyan-300/30 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_15px_rgba(34,211,238,0.5)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.8)] transition-shadow duration-500">
-              M
+          <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo(0,0)}>
+            <div className={`flex items-center justify-center transition-all duration-500 ${
+              isInHero ? 'w-10 h-10' : 'w-8 h-8'
+            }`}>
+              <img 
+                src="/assets/logos/maven-logo.png" 
+                alt="Maven AI Logo"
+                className="h-full w-auto object-contain brightness-0 invert transition-all duration-500"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
             </div>
-            <span className="text-xl font-semibold tracking-tight text-white">
-              Maven <span className="text-cyan-400">AI</span>
+            <span className={`font-bold tracking-tight text-white transition-all duration-500 ${
+              isInHero ? 'text-xl' : 'text-lg'
+            }`}>
+              <span className="text-white drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">Maven</span>{' '}
+              <span className="text-cyan-400 drop-shadow-[0_0_12px_rgba(34,211,238,0.8)] font-extrabold">AI</span>
             </span>
           </div>
 

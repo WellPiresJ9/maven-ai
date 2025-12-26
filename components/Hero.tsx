@@ -31,12 +31,6 @@ export const Hero: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full flex flex-col items-center text-center">
         
-        {/* Availability Badge */}
-        <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-cyan-950/50 border border-cyan-400/30 text-cyan-100 text-xs font-semibold mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-            <span className="flex h-2 w-2 rounded-full bg-cyan-400 mr-2 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
-            AGORA DISPONÍVEL PARA NOVOS PROJETOS
-        </div>
-        
         {/* Headline */}
         <h1 className="max-w-4xl font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-white tracking-tight leading-[1.1] mb-8 drop-shadow-2xl">
             Cresça <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-white to-cyan-200 drop-shadow-[0_0_25px_rgba(34,211,238,0.4)]">sem gargalos</span>,<br/> com Agentes de IA.
@@ -59,18 +53,60 @@ export const Hero: React.FC = () => {
             </Button>
         </div>
 
-        {/* Client Logos - Clean White/Cyan look */}
-        <div className="pt-8 border-t border-cyan-500/20 w-full max-w-3xl">
+        {/* Client Logos - Infinite scrolling carousel */}
+        <div className="pt-8 border-t border-cyan-500/20 w-full">
             <p className="text-xs font-semibold text-cyan-300/50 uppercase tracking-[0.2em] mb-6 text-center">
                 Empresas que confiam na Maven AI
             </p>
-            <div className="flex gap-8 sm:gap-12 opacity-60 grayscale mix-blend-screen justify-center flex-wrap">
-                <div className="h-6 w-24 bg-gradient-to-r from-transparent via-cyan-100/30 to-transparent rounded animate-pulse"></div>
-                <div className="h-6 w-24 bg-gradient-to-r from-transparent via-cyan-100/30 to-transparent rounded animate-pulse delay-75"></div>
-                <div className="h-6 w-24 bg-gradient-to-r from-transparent via-cyan-100/30 to-transparent rounded animate-pulse delay-150"></div>
+            <div className="relative overflow-hidden">
+                <div className="flex animate-scroll-logos gap-12 items-center">
+                    {/* First set of logos - all logos from hero-logos folder */}
+                    {[
+                        '/assets/hero-logos/emb-logo.png',
+                        '/assets/hero-logos/helioplast-logo.png',
+                        '/assets/hero-logos/hunters-logo.png',
+                        '/assets/hero-logos/inframetro-logo.png',
+                        '/assets/hero-logos/long-logo.png',
+                        '/assets/hero-logos/rony-logo.png',
+                        '/assets/hero-logos/tecfil-logo.png',
+                        '/assets/hero-logos/tiohuli-logo.png',
+                        '/assets/hero-logos/wittel-logo.png',
+                    ].map((logoUrl, idx) => (
+                        <div key={`first-${idx}`} className="flex-shrink-0 h-10 flex items-center justify-center px-8">
+                            <img 
+                                src={logoUrl} 
+                                alt={`Logo ${idx + 1}`}
+                                className="h-full w-auto object-contain opacity-70 brightness-0 invert hover:opacity-100 transition-all duration-300"
+                                style={{ filter: 'brightness(0) invert(1)' }}
+                            />
+                        </div>
+                    ))}
+                    {/* Duplicate set for seamless loop */}
+                    {[
+                        '/assets/hero-logos/emb-logo.png',
+                        '/assets/hero-logos/helioplast-logo.png',
+                        '/assets/hero-logos/hunters-logo.png',
+                        '/assets/hero-logos/inframetro-logo.png',
+                        '/assets/hero-logos/long-logo.png',
+                        '/assets/hero-logos/rony-logo.png',
+                        '/assets/hero-logos/tecfil-logo.png',
+                        '/assets/hero-logos/tiohuli-logo.png',
+                        '/assets/hero-logos/wittel-logo.png',
+                    ].map((logoUrl, idx) => (
+                        <div key={`second-${idx}`} className="flex-shrink-0 h-10 flex items-center justify-center px-8">
+                            <img 
+                                src={logoUrl} 
+                                alt={`Logo ${idx + 1}`}
+                                className="h-full w-auto object-contain opacity-70 brightness-0 invert hover:opacity-100 transition-all duration-300"
+                                style={{ filter: 'brightness(0) invert(1)' }}
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
       </div>
+
     </section>
   );
 };

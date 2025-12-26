@@ -49,28 +49,28 @@ export const FEATURES: FeatureCardProps[] = [
 
 export const VIDEOS: VideoItem[] = [
   {
-    id: 'dQw4w9WgXcQ', // Placeholder
+    id: 'Fl7cjXQfyRM',
     title: 'Agente IA de Vendas para Ecommerce',
     tag: 'E-commerce',
     thumbnailUrl: 'https://picsum.photos/id/1/800/600',
     description: 'Nosso agente de IA automatiza a qualificação de leads, recomenda produtos e finaliza vendas diretamente no site ou WhatsApp. Tudo acontece em piloto automático, aumentando a conversão em até 35%.'
   },
   {
-    id: 'dQw4w9WgXcQ', // Placeholder
+    id: 'pcS5JaCzyuM',
     title: 'Criei uma IA para Vender Transformadores de Energia no WhatsApp!',
     tag: 'Indústria',
     thumbnailUrl: 'https://picsum.photos/id/2/800/600',
     description: 'Veja como estruturamos um agente técnico capaz de entender especificações de engenharia complexas e gerar orçamentos para transformadores industriais em tempo real.'
   },
   {
-    id: 'dQw4w9WgXcQ', // Placeholder
+    id: 'O7Gh0g735U4',
     title: 'Estrutura de Vendas 100% Automatizada + App feito com IA',
     tag: 'SaaS',
     thumbnailUrl: 'https://picsum.photos/id/3/800/600',
     description: 'Um deep-dive na arquitetura de um sistema completo onde o Agente controla desde a prospecção fria até o onboarding do usuário dentro do aplicativo.'
   },
   {
-    id: 'dQw4w9WgXcQ', // Placeholder
+    id: '4zZ8dnQO3rA',
     title: 'Agente de IA para Loja de Vinhos',
     tag: 'Varejo',
     thumbnailUrl: 'https://picsum.photos/id/4/800/600',
@@ -81,65 +81,65 @@ export const VIDEOS: VideoItem[] = [
 export const CASES: CaseStudy[] = [
   {
     company: 'Tecfil',
-    logoUrl: 'https://placehold.co/600x200/ffffff/083344?text=Tecfil', // Replace with actual logo asset
+    logoUrl: '/assets/logos/tecfil-logo1.png',
     href: '#case-tecfil',
     category: 'Indústria Automotiva',
-    title: 'Automação de pedidos e suporte técnico para distribuidores via WhatsApp',
-    metrics: ['Redução de 60% no tempo de atendimento', 'Disponibilidade 24/7 para distribuidores']
+    title: 'Como a TECFIL reduziu o tempo de consulta de informações em 90%',
+    metrics: ['+200 horas de economia mensal', '35% de redução no tempo de atendimento']
   },
   {
     company: 'Wittel',
-    logoUrl: 'https://placehold.co/600x200/ffffff/083344?text=wittel', // Replace with actual logo asset
+    logoUrl: '/assets/logos/logo%20wittel%201.png',
     href: '#case-wittel',
     category: 'Tecnologia e CX',
-    title: 'Triagem inteligente de chamados e integração com plataforma de Contact Center',
-    metrics: ['Aumento de 40% na resolução em primeiro nível', 'Integração nativa com CRM']
+    title: 'Como a Wittel aumentou a taxa de comparecimento em reuniões de vendas em 70%',
+    metrics: ['Aumento de 70% na taxa de comparecimento', '85% de taxa de resposta NPS']
   },
   {
     company: 'Hunters',
-    logoUrl: 'https://placehold.co/600x200/ffffff/083344?text=Hunters', // Replace with actual logo asset
+    logoUrl: '/assets/logos/hunters_manpower_logo1.jpeg',
     href: '#case-hunters',
     category: 'Recrutamento e Seleção',
-    title: 'Agente de triagem de candidatos e agendamento de entrevistas automático',
-    metrics: ['+300 candidatos triados por dia', 'Redução de 5 dias no time-to-hire']
+    title: 'Automação total da etapa inicial de entrevistas com Júlia — a AI Embarcadora',
+    metrics: ['Automação total de entrevistas iniciais', 'Base tecnológica para escalar recrutamento']
   }
 ];
 
 export const COMPARISON_DATA: ComparisonRow[] = [
   {
     criteria: 'Tempo para contratar',
-    maven: 'Poucas horas',
-    freelancers: '5–7 dias',
+    maven: 'Poucas Horas',
+    freelancers: '5-7 dias',
     inHouse: 'Meses',
-    agencies: '2–3 semanas'
+    agencies: '2-3 Semanas'
   },
   {
-    criteria: 'Nível de experiência',
-    maven: 'Nível sênior em IA',
-    freelancers: 'Iniciante/Júnior',
-    inHouse: 'Variável',
-    agencies: 'Incerto'
+    criteria: 'Nível de Experiência',
+    maven: 'Nível Sénior',
+    freelancers: 'Iniciante ou Nível Junior',
+    inHouse: 'Boa (Cruze os dedos)',
+    agencies: 'Confie na Sorte'
   },
   {
     criteria: 'Comunicação',
-    maven: 'Diária e estruturada',
-    freelancers: 'Irregular',
-    inHouse: 'Muitas reuniões',
-    agencies: 'Distante'
+    maven: 'Diária',
+    freelancers: 'Inexistente',
+    inHouse: 'Muitas falhas',
+    agencies: 'Fantasma'
   },
   {
-    criteria: 'Primeira entrega',
-    maven: '2–3 dias',
-    freelancers: 'Semanas',
-    inHouse: '6–7 semanas',
-    agencies: '2–3 meses'
+    criteria: 'Primeira Entrega',
+    maven: '2-3 dias',
+    freelancers: 'Várias Semanas',
+    inHouse: '6-7 Semanas',
+    agencies: '2-3 Meses'
   },
   {
     criteria: 'Rescisão',
-    maven: 'Um clique, sem multa',
+    maven: 'Um clique + 0 R$',
     freelancers: 'Demorada',
-    inHouse: 'Custos trabalhistas',
-    agencies: 'Contratos engessados'
+    inHouse: 'Pesadelo + Dores de Cabeça',
+    agencies: 'Demorada'
   }
 ];
 
@@ -166,25 +166,25 @@ export const STEPS: StepItem[] = [
 
 export const FAQ_ITEMS: FAQItem[] = [
   {
-    question: 'O que exatamente é um Agente de IA e como ele se diferencia de um chatbot?',
-    answer: 'Um Agente de IA não apenas responde perguntas com base em um script; ele tem memória, acesso a ferramentas (como seu CRM ou email) e autonomia para executar tarefas complexas de ponta a ponta, agindo como um funcionário digital.'
+    question: 'O que faz uma agência de automação com IA?',
+    answer: 'Uma agência de automação com IA transforma processos operacionais em sistemas digitais inteligentes. Nosso trabalho é entender como o seu negócio funciona hoje e automatizar decisões, tarefas e fluxos usando IA integrada aos seus sistemas, reduzindo esforço manual e aumentando eficiência.'
   },
   {
-    question: 'Quais tarefas os Agentes de IA podem assumir no meu negócio?',
-    answer: 'Desde o atendimento inicial e qualificação de leads, agendamento de reuniões, até processos internos como geração de relatórios, onboarding de clientes e triagem de documentos.'
+    question: 'Quais Agentes de IA posso criar?',
+    answer: 'Praticamente qualquer agente, desde que exista um processo estruturado e documentado. Se algo hoje é feito por pessoas seguindo regras, etapas ou decisões claras, isso pode ser transformado em um agente de IA operando de forma digital e automatizada.'
   },
   {
-    question: 'Em quanto tempo posso ter um Agente de IA rodando?',
-    answer: 'Nossa metodologia permite entregar as primeiras automações funcionais em apenas 2 a 3 dias após o kick-off do projeto.'
+    question: 'Preciso ter equipe técnica?',
+    answer: 'Não. O que é necessário é apenas um responsável pelo projeto (pode ser você mesmo) para alinhar processos, validar decisões e acompanhar as etapas. Toda a parte técnica fica sob nossa responsabilidade.'
   },
   {
-    question: 'Preciso ter equipe técnica interna?',
-    answer: 'Não. A Maven AI cuida de toda a implementação, integração e manutenção. Você só precisa definir os objetivos de negócio.'
+    question: 'Como funciona a segurança dos dados?',
+    answer: 'A segurança é tratada desde a arquitetura do projeto. Os dados são acessados apenas para a finalidade do sistema, com controle de permissões, boas práticas de armazenamento e respeito à LGPD. Nenhuma informação é utilizada para treinar modelos públicos.'
   },
   {
-    question: 'Como ficam segurança e privacidade dos dados?',
-    answer: 'Seguimos rigorosos protocolos de segurança. Seus dados são processados em ambientes isolados e utilizados apenas para o contexto da sua automação, sem treinamento de modelos públicos.'
+    question: 'Em quanto tempo posso ter um agente rodando?',
+    answer: 'A primeira entrega funcional acontece, em média, entre 2 e 3 dias. A partir disso, o sistema evolui com ajustes finos, melhorias e novas automações conforme o projeto avança.'
   }
 ];
 
-export const CALENDLY_LINK = "https://calendly.com"; // Placeholder
+export const CALENDLY_LINK = "https://calendly.com/wellpires/discovery-call";

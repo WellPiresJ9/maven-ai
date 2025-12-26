@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { Play, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { VIDEOS } from '../constants';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const VideoGallery: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeVideo = VIDEOS[activeIndex];
+  const { isVisible, elementRef } = useScrollAnimation(0.1, 150);
 
   return (
     // Section Dark Mode
-    <section className="py-24 relative section-dark">
+    <section ref={elementRef} className="py-24 relative section-dark">
       
-      {/* Background Separation Gradient */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[#e0f2fe] to-transparent opacity-10 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="text-center mb-16">
           <h2 className="font-serif text-3xl md:text-5xl font-medium text-white mb-4">
             Veja nossos Agentes de IA <span className="italic text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">em ação</span>
@@ -115,6 +114,7 @@ export const VideoGallery: React.FC = () => {
 
         </div>
       </div>
+
     </section>
   );
 };

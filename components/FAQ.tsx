@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { FAQ_ITEMS } from '../constants';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { isVisible, elementRef } = useScrollAnimation(0.1, 450);
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="py-20">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" ref={elementRef} className="py-20 relative">
+      <div className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <h2 className="font-serif text-3xl font-medium text-white mb-10 text-center">
             Perguntas Frequentes
         </h2>
@@ -45,6 +47,7 @@ export const FAQ: React.FC = () => {
           ))}
         </div>
       </div>
+
     </section>
   );
 };

@@ -1,19 +1,19 @@
 import React from 'react';
 import { Button } from './ui/Button';
 import { CALENDLY_LINK } from '../constants';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const FinalCTA: React.FC = () => {
-  return (
-    <section className="py-32 relative overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-transparent -z-10"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-cyan-600/20 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
+  const { isVisible, elementRef } = useScrollAnimation(0.1, 400);
 
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <div className="glass-card p-12 md:p-20 rounded-[48px] shadow-2xl border border-cyan-500/20 relative overflow-hidden">
-                
-                {/* Shine effect */}
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-200/40 to-transparent"></div>
+  return (
+    <section ref={elementRef} className="py-32 relative overflow-hidden">
+        {/* Background Gradient - seamless blend */}
+        <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/5 via-transparent to-transparent -z-10"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-cyan-600/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+        <div className={`max-w-4xl mx-auto px-4 text-center relative z-10 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+            <div className="glass-card-seamless p-12 md:p-20 rounded-[48px] shadow-2xl relative overflow-hidden">
 
                 <h2 className="font-serif text-4xl md:text-5xl font-medium text-white mb-8 tracking-tight">
                     Pronto para ter Agentes de IA <br/> trabalhando por você?
@@ -31,6 +31,7 @@ export const FinalCTA: React.FC = () => {
                 </div>
             </div>
         </div>
+
     </section>
   );
 };

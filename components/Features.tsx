@@ -1,11 +1,17 @@
 import React from 'react';
 import { FEATURES } from '../constants';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const Features: React.FC = () => {
+  const { isVisible, elementRef } = useScrollAnimation(0.15, 300);
+
   return (
-    <section id="agentes" className="py-24 relative overflow-hidden">
+    <section 
+      id="agentes" 
+      ref={elementRef}
+      className="py-24 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Explanation */}
           <div className="sticky top-24">
@@ -35,26 +41,39 @@ export const Features: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Grid of Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Right: Vertical list of agent rectangles */}
+          <div className="space-y-4">
             {FEATURES.map((feature, idx) => (
               <div 
                 key={idx} 
-                className="glass-card p-8 rounded-[32px] group relative overflow-hidden"
+                className={`glass-card p-6 rounded-2xl group relative overflow-hidden transition-all duration-700 ease-out ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0 scale-100' 
+                    : 'opacity-0 translate-y-4 scale-95'
+                }`}
+                style={{ 
+                  transitionDelay: `${300 + idx * 150}ms`,
+                  transition: 'opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                }}
               >
-                {/* Glow on hover */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-sky-600 rounded-[32px] blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                {/* Subtle glow on hover */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-600/0 to-sky-600/0 rounded-2xl blur-sm opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
 
-                <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(34,211,238,0.15)]">
-                    {React.cloneElement(feature.icon as React.ReactElement, { className: "w-7 h-7 text-cyan-300" })}
-                    </div>
-                    <h3 className="font-serif text-xl font-semibold text-white mb-3">
-                    {feature.title}
+                <div className="relative z-10 flex items-center gap-6">
+                  {/* Icon */}
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(34,211,238,0.1)]">
+                    {React.cloneElement(feature.icon as React.ReactElement, { className: "w-6 h-6 text-cyan-300" })}
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-serif text-lg font-semibold text-white mb-1.5">
+                      {feature.title}
                     </h3>
                     <p className="text-slate-400 text-sm leading-relaxed">
-                    {feature.description}
+                      {feature.description}
                     </p>
+                  </div>
                 </div>
               </div>
             ))}

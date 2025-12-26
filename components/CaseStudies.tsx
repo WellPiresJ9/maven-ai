@@ -1,11 +1,14 @@
 import React from 'react';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { CASES } from '../constants';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const CaseStudies: React.FC = () => {
+  const { isVisible, elementRef } = useScrollAnimation(0.1, 200);
+
   return (
-    <section id="cases" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="cases" ref={elementRef} className="py-24 relative">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="mb-16 md:text-center max-w-3xl mx-auto">
           <h2 className="font-serif text-3xl md:text-5xl font-medium text-white mb-6">
             Grandes empresas escalando com Agentes de IA
@@ -20,18 +23,28 @@ export const CaseStudies: React.FC = () => {
             <a 
               key={idx} 
               href={study.href}
-              className="flex flex-col h-full rounded-[32px] overflow-hidden group transition-all duration-500 hover:-translate-y-2"
+              className={`flex flex-col h-full rounded-[32px] overflow-hidden group transition-all duration-700 ease-out hover:-translate-y-2 ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-6'
+              }`}
+              style={{ transitionDelay: `${300 + idx * 100}ms` }}
             >
-              {/* Top Half: Logo Area (White Background) */}
-              <div className="h-48 bg-white flex items-center justify-center p-10 relative overflow-hidden">
+              {/* Top Half: Logo Area (White Background) - Fixed size for all cards */}
+              <div className="h-64 bg-white flex items-center justify-center p-12 relative overflow-hidden">
                 {/* Subtle pattern overlay on white background */}
                 <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#083344_1px,transparent_1px)] [background-size:16px_16px]"></div>
                 
-                <img 
-                  src={study.logoUrl} 
-                  alt={`Logo ${study.company}`} 
-                  className="max-w-full max-h-full object-contain relative z-10 transition-transform duration-500 group-hover:scale-110" 
-                />
+                {/* Fixed size container for all logos */}
+                <div className="w-[240px] h-[100px] flex items-center justify-center relative z-10">
+                  <img 
+                    src={study.logoUrl} 
+                    alt={`Logo ${study.company}`} 
+                    className={`max-w-full max-h-full w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 ${
+                      study.company === 'Hunters' ? 'scale-125' : ''
+                    }`}
+                  />
+                </div>
               </div>
 
               {/* Bottom Half: Content Area (Glass Dark) */}
@@ -67,6 +80,7 @@ export const CaseStudies: React.FC = () => {
           ))}
         </div>
       </div>
+
     </section>
   );
 };
